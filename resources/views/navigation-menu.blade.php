@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
@@ -12,30 +12,110 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Asistencia personal') }}
-                    </x-nav-link>
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Asistencia personal') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Opción 1') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 2') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 3') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('reportes') }}" :active="request()->routeIs('reportes')">
-                        {{ __('Reportes') }}
-                    </x-nav-link>
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Reportes') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Opción 1') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 2') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 3') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
-                        {{ __('Usuarios') }}
-                    </x-nav-link>
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Usuarios') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="{{ route('register') }}">
+                                {{ __('Crear usuarios') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('usuarios') }}">
+                                {{ __('Lista de usuarios') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 3') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('permisos') }}" :active="request()->routeIs('permisos')">
-                        {{ __('Permisos') }}
-                    </x-nav-link>
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Permisos') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Opción 1') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 2') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 3') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
-                        {{ __('Calendario') }}
-                    </x-nav-link>
-                </div>                
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Calendario') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Opción 1') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 2') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Opción 3') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>               
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">

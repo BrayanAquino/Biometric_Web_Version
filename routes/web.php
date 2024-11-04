@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User; // Importa el modelo User para obtener los datos
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,7 +22,8 @@ Route::get('/reportes', function () {
 })->name('reportes');
 
 Route::get('/usuarios', function () {
-    return view('usuarios.usuarios');
+    $users = User::all(); // Obtiene todos los usuarios
+    return view('usuarios.usuarios', compact('users')); 
 })->name('usuarios');
 
 Route::get('/permisos', function () {
@@ -31,3 +33,7 @@ Route::get('/permisos', function () {
 Route::get('/calendario', function () {
     return view('calendario.calendario');
 })->name('calendario');
+
+Route::get('/register', function () {
+    return view('auth.register'); 
+})->name('register');
