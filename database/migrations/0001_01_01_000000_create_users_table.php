@@ -11,6 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create("roles", function (Blueprint $table) {
+            $table->id();
+            $table->string("name_rol");
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,12 +26,14 @@ return new class extends Migration
             $table->string('cellphone')->nullable();
             $table->dateTime('hiring_date')->nullable();
             $table->string('state')->nullable();
-            $table->string('hourly_payment')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->unsignedBigInteger('rol_id')->nullable();
+            $table->foreign('rol_id')->references('id')->on('roles');
             $table->timestamps();
         });
+        
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
@@ -52,5 +59,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('roles');
     }
 };

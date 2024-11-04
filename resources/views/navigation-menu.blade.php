@@ -21,13 +21,10 @@
 
                         <x-slot name="content">
                             <x-dropdown-link href="">
-                                {{ __('Opción 1') }}
+                                {{ __('Asistencia Diaria') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Opción 2') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Opción 3') }}
+                                {{ __('Reporte de asistencia') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -42,13 +39,10 @@
 
                         <x-slot name="content">
                             <x-dropdown-link href="">
-                                {{ __('Opción 1') }}
+                                {{ __('Reporte de hoy') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Opción 2') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Opción 3') }}
+                                {{ __('Reporte generales') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -62,14 +56,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="{{ route('register') }}">
+                            <x-dropdown-link href="{{ route('usuarios.create') }}">
                                 {{ __('Crear usuarios') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('usuarios') }}">
+                            <x-dropdown-link href="{{ route('usuarios.index') }}">
                                 {{ __('Lista de usuarios') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Opción 3') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -84,13 +75,10 @@
 
                         <x-slot name="content">
                             <x-dropdown-link href="">
-                                {{ __('Opción 1') }}
+                                {{ __('Lista de permisos') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Opción 2') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Opción 3') }}
+                                {{ __('Vacaciones') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -105,17 +93,49 @@
 
                         <x-slot name="content">
                             <x-dropdown-link href="">
-                                {{ __('Opción 1') }}
+                                {{ __('Mensajes') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                        
+                    </x-dropdown>
+                </div> 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Tardanzas') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Lista de tardanzas') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Opción 2') }}
+                                {{ __('Justificaciones') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                        
+                    </x-dropdown>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-dropdown align="bottom" width="48">
+                        <x-slot name="trigger" class="pt-5">
+                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                {{ __('Faltas') }}
+                            </x-nav-link>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="">
+                                {{ __('Lista de faltas') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Opción 3') }}
+                                {{ __('Justificaciones') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
-                </div>               
+                </div>                                    
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -195,11 +215,11 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Administrar Cuenta') }}
                             </div>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -216,7 +236,7 @@
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Salir') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>

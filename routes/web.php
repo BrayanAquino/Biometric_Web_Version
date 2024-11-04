@@ -1,39 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User; // Importa el modelo User para obtener los datos
+use App\Models\User; 
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('asist_pers.asist_pers');
     })->name('dashboard');
+
+    Route::get('/reportes', function () {
+        return view('reportes.reportes');
+    })->name('reportes');
+
+    Route::get('/permisos', function () {
+        return view('permisos.permisos');
+    })->name('permisos');
+
+    Route::get('/calendario', function () {
+        return view('calendario.calendario');
+    })->name('calendario');
+
+    Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuarios/crear', [UserController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
+    Route::get('/usuarios/{id}/editar', [UserController::class, 'edit'])->name('usuarios.edit');
+    Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');
+    Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 });
-
-Route::get('/reportes', function () {
-    return view('reportes.reportes');
-})->name('reportes');
-
-Route::get('/usuarios', function () {
-    $users = User::all(); // Obtiene todos los usuarios
-    return view('usuarios.usuarios', compact('users')); 
-})->name('usuarios');
-
-Route::get('/permisos', function () {
-    return view('permisos.permisos');
-})->name('permisos');
-
-Route::get('/calendario', function () {
-    return view('calendario.calendario');
-})->name('calendario');
-
-Route::get('/register', function () {
-    return view('auth.register'); 
-})->name('register');
