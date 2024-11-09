@@ -11,24 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->dateTime('hora_entrada')->nullable();
-            $table->dateTime('departure_time')->nullable();
-            $table->string('shift');
-            $table->string('attendence_status');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->text('reason_permission');
+            $table->string('status_permission');
             $table->unsignedBigInteger('user_id');
             $table->foreing('user_id')->references('id')->on('user');
             $table->timestamps();
         });
-    }   
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('permissions');
     }
 };

@@ -56,11 +56,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="{{ route('usuarios.create') }}">
-                                {{ __('Crear usuarios') }}
-                            </x-dropdown-link>
                             <x-dropdown-link href="{{ route('usuarios.index') }}">
                                 {{ __('Lista de usuarios') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('usuarios.create') }}">
+                                {{ __('Crear usuarios') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
