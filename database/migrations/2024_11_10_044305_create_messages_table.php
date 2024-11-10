@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->dateTime('hora_entrada')->nullable();
-            $table->dateTime('departure_time')->nullable();
-            $table->string('shift');
-            $table->string('attendence_status');
+            $table->string('title_message');
+            $table->text('body_message');
+            $table->date('create_date');
+            $table->unsignedBigInteger('calendary_id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('calendary_id')->references('id')->on('calendaries');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
-    }   
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('messages');
     }
 };
