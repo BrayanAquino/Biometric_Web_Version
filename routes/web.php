@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User; 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsistPersController;
+Use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\TardinessController;
-
 
 Route::get('/', function () {
     return view('auth.login');
@@ -41,7 +41,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/asist-personal',[AsistPersController::class, 'index'])->name('asistpersonal.index');
     Route::get('/asist.personal/marcar',[AsistPersController::class,'create'])->name('asistpersonal.create');
     Route::post('/asistencia/guardar', [AsistPersController::class, 'store'])->name('asistencia.guardar');
-
+    //Calendario
+    Route::get('/calendario',[CalendarController::class, 'index'])->name('calendario.index');
     //Permisos
     Route::get('/permisos',[PermissionsController::class, 'index'])->name('permisos.index');
     Route::get('/permisos/crear',[PermissionsController::class,'create'])->name('permisos.create');
