@@ -20,11 +20,11 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('asistpersonal.index') }}">
                                 {{ __('Asistencia Diaria') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
-                                {{ __('Reporte de asistencia') }}
+                                {{ __('Marcar Asistencia') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

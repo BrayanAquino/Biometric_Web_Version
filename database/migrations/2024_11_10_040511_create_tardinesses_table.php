@@ -26,7 +26,7 @@ return new class extends Migration
             $table->id();
             $table->date('evidence_tardiness');
             $table->unsignedBigInteger('tardiness_id');
-            $table->foreign('tardiness_id')->references('id')->on('absences');
+            $table->foreign('tardiness_id')->references('id')->on('tardinesses');
             $table->timestamps();
         });
     }

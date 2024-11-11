@@ -69,8 +69,60 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relación con el rol del usuario.
+     */
     public function role()
     {
         return $this->belongsTo(Role::class, 'rol_id');
+    }
+
+    /**
+     * Relación con las asistencias (attendances).
+     */
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    /**
+     * Relación con las ausencias (absences).
+     */
+    public function absences()
+    {
+        return $this->hasMany(Absence::class);
+    }
+
+    /**
+     * Relación con los retrasos (tardinesses).
+     */
+    public function tardinesses()
+    {
+        return $this->hasMany(Tardiness::class);
+    }
+
+    /**
+     * Relación con los permisos (permissions).
+     */
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class);
+    }
+
+    /**
+     * Relación con los mensajes (messages).
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    /**
+     * Relación con los días no laborables (non_working_days).
+     */
+    public function nonWorkingDays()
+    {
+        return $this->hasMany(NonWorkingDay::class);
     }
 }

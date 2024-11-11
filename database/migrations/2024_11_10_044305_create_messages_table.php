@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('title_message');
             $table->text('body_message');
             $table->date('create_date');
-            $table->unsignedBigInteger('calendary_id');
+            $table->unsignedBigInteger('calendar_id'); 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('calendary_id')->references('id')->on('calendaries');
+            $table->foreign('calendar_id')->references('id')->on('calendars'); 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

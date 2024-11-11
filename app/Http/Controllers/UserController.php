@@ -13,7 +13,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('role')->get()->map(function($user) {
-            // Formatear la fecha de contratación
             $user->formatted_hiring_date = Carbon::parse($user->hiring_date)->format('d-m-Y');
             return $user;
         });

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
-            $table->datetime('duration_vacation');
+            $table->integer('duration_vacation');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

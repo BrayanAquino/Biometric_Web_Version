@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('day');
             $table->unsignedBigInteger('calendar_id');
-            $table->foreign('calendar_id')->references('id')->on('calendaries');
+            $table->foreign('calendar_id')->references('id')->on('calendars');
             $table->timestamps();
         });
     }
