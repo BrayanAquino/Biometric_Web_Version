@@ -74,7 +74,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('permisos.index') }}">
                                 {{ __('Lista de permisos') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">

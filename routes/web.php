@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User; 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsistPersController;
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\TardinessController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,5 +42,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/asist.personal/marcar',[AsistPersController::class,'create'])->name('asistpersonal.create');
     Route::post('/asistencia/guardar', [AsistPersController::class, 'store'])->name('asistencia.guardar');
 
+    //Permisos
+    Route::get('/permisos',[PermissionsController::class, 'index'])->name('permisos.index');
+    Route::get('/permisos/crear',[PermissionsController::class,'create'])->name('permisos.create');
+
+    //Tardanzas
+    Route::get('/tardanzas',[TardinessController::class, 'index'])->name('tardanzas.index');
+    
 
 });
