@@ -92,7 +92,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('calendario.index') }}">
                                 {{ __('Mensajes') }}
                             </x-dropdown-link>
                         </x-slot>
