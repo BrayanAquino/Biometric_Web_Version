@@ -7,6 +7,9 @@ use App\Http\Controllers\AsistPersController;
 Use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\TardinessController;
+use App\Http\Controllers\JustTardController;
+use App\Http\Controllers\AbsencesController;
+use App\Http\Controllers\JustAbsController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -49,6 +52,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     //Tardanzas
     Route::get('/tardanzas',[TardinessController::class, 'index'])->name('tardanzas.index');
-    
+    Route::get('/tardanzas/justificaciones',[JustTardController::class, 'index'])->name('tardanzas.justificaciones');
+
+    //Faltas
+    Route::get('/faltas',[AbsencesController::class, 'index'])->name('faltas.index');
+    Route::get('/faltas/justificaciones',[JustAbsController::class, 'index'])->name('faltas.justificaciones');
 
 });

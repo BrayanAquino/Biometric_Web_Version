@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
 
                 <div class="flex justify-between mb-6">
-                    <x-a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700" href="{{ route('justTardanzas.justificaciones') }}">
+                    <x-a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700" href="{{ route('tardanzas.justificaciones') }}">
                         Revisar Justificaciones
                     </x-a>
                 </div>

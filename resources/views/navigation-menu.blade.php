@@ -108,7 +108,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('tardanzas.index') }}">
                                 {{ __('Lista de tardanzas') }}
                             </x-dropdown-link>
                             <x-dropdown-link href="">
@@ -127,10 +127,10 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('faltas.index') }}">
                                 {{ __('Lista de faltas') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('faltas.justificaciones') }}">
                                 {{ __('Justificaciones') }}
                             </x-dropdown-link>
                         </x-slot>
