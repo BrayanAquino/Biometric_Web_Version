@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($attendances as $attendance)
+                            @forelse ($attendances as $attendance)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ \Carbon\Carbon::parse($attendance->fecha)->format('d-m-Y') }}</td>
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->hora_entrada ? \Carbon\Carbon::parse($attendance->hora_entrada)->format('H:i') : 'No registrado' }}</td>
@@ -43,8 +43,8 @@
                                 <tr>
                                     <td colspan="5" class="text-center px-6 py-4 text-gray-800 dark:text-gray-200">No hay registros de asistencia para este mes.</td>
                                 </tr>
-                            @endforeach
-                        </tbody>                
+                            @endforelse
+                        </tbody>                                                                
                     </table>
                 </div>
                 

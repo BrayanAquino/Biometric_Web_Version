@@ -16,9 +16,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('asist_pers.asist_pers');
-    })->name('dashboard');
+    Route::get('/dashboard', [AsistPersController::class, 'index'])->name('dashboard');
 
     Route::get('/reportes', function () {
         return view('reportes.reportes');
@@ -44,11 +42,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/asist-personal',[AsistPersController::class, 'index'])->name('asistpersonal.index');
     Route::get('/asist.personal/marcar',[AsistPersController::class,'create'])->name('asistpersonal.create');
     Route::post('/asistencia/guardar', [AsistPersController::class, 'store'])->name('asistencia.guardar');
+
     //Calendario
     Route::get('/calendario',[CalendarController::class, 'index'])->name('calendario.index');
+
     //Permisos
     Route::get('/permisos',[PermissionsController::class, 'index'])->name('permisos.index');
     Route::get('/permisos/crear',[PermissionsController::class,'create'])->name('permisos.create');
+    Route::post('/permisos', [PermissionsController::class, 'store'])->name('permisos.store');
 
     //Tardanzas
     Route::get('/tardanzas',[TardinessController::class, 'index'])->name('tardanzas.index');
