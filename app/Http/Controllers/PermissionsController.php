@@ -10,7 +10,8 @@ class PermissionsController extends Controller
 {
     public function index()
     {
-        return view('permisos.permisos');
+        $permissions = Permission::with('evidences')->where('user_id', Auth::id())->get();
+        return view('permisos.permisos', compact('permissions'));
     }
 
     public function create()
