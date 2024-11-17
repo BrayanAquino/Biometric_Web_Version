@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User; 
+use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsistPersController;
 Use App\Http\Controllers\CalendarController;
@@ -10,6 +10,7 @@ use App\Http\Controllers\TardinessController;
 use App\Http\Controllers\JustTardController;
 use App\Http\Controllers\AbsencesController;
 use App\Http\Controllers\JustAbsController;
+use App\Http\Controllers\AttendanceController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -60,3 +61,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/faltas/justificaciones',[JustAbsController::class, 'index'])->name('faltas.justificaciones');
 
 });
+
+    //Marcación de Asistencia
+    Route::get('/marcar', [AttendanceController::class,'index'])->name('asistencia.index');
+    Route::get('/marcar/qr_scaner', [AttendanceController::class,'create'])->name('asistencia.create');

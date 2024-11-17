@@ -10,9 +10,9 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
 
                 <div class="flex justify-between mb-6">
-                    <x-a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700" href="{{ route('asistpersonal.create') }}">
+                    {{-- <x-a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700" href="{{ route('asistpersonal.create') }}">
                         Marcar Entrada/Salida
-                    </x-a>
+                    </x-a> --}}
                     <x-a class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700">
                         Generar Reporte
                     </x-a>
@@ -23,11 +23,11 @@
                     <table class="min-w-full w-full border border-gray-200 dark:border-gray-700">
                         <thead>
                             <tr class="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">
-                                <th class="px-6 py-3 text-left w-1/5">Fecha</th>
-                                <th class="px-6 py-3 text-left w-1/5">Hora Entrada</th>
-                                <th class="px-6 py-3 text-left w-1/5">Hora Salida</th>
-                                <th class="px-6 py-3 text-left w-1/5">Turno</th>
-                                <th class="px-6 py-3 text-left w-1/5">Estado</th>
+                                <th class="px-6 py-3 text-center w-1/5">Fecha</th>
+                                <th class="px-6 py-3 text-center w-1/5">Hora Entrada</th>
+                                <th class="px-6 py-3 text-center w-1/5">Hora Salida</th>
+                                <th class="px-6 py-3 text-center w-1/5">Turno</th>
+                                <th class="px-6 py-3 text-center w-1/5">Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,10 +44,10 @@
                                     <td colspan="5" class="text-center px-6 py-4 text-gray-800 dark:text-gray-200">No hay registros de asistencia para este mes.</td>
                                 </tr>
                             @endforelse
-                        </tbody>                                                                
+                        </tbody>
                     </table>
                 </div>
-                
+
             </div>
         </div>
     </div>

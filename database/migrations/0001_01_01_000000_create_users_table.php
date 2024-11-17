@@ -24,7 +24,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('cellphone')->nullable();
+            $table->string('dni')->nullable();
             $table->dateTime('hiring_date')->nullable();
+            $table->string('qr_info')->nullable();
             $table->string('state')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
@@ -33,7 +35,7 @@ return new class extends Migration
             $table->foreign('rol_id')->references('id')->on('roles');
             $table->timestamps();
         });
-        
+
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

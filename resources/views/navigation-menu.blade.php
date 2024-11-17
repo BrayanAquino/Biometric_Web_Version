@@ -10,24 +10,10 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-dropdown align="bottom" width="48">
-                        <x-slot name="trigger" class="pt-5">
-                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
-                                {{ __('Asistencia personal') }}
-                            </x-nav-link>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <x-dropdown-link href="{{ route('asistpersonal.index') }}">
-                                {{ __('Asistencia Diaria') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Marcar Asistencia') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
+                    <x-nav-link href="{{ route('asistpersonal.index') }}" :active="request()->routeIs('calendario.index')">
+                        {{ __('Asistencia Personal') }}
+                    </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-dropdown align="bottom" width="48">

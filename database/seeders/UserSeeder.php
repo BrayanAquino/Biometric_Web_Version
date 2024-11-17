@@ -20,7 +20,9 @@ class UserSeeder extends Seeder
             'email' => 'brayan@gmail.com',
             'password' => Hash::make('123456789'),
             'cellphone' => '987654321',
+            'dni'=> '12345678',
             'hiring_date' => now(),
+            'qr_info' => Hash::make('12345678/1/16-11-2024'),
             'state' => 'Activo',
             'rol_id' => 1,
         ]);
@@ -30,7 +32,9 @@ class UserSeeder extends Seeder
             'email' => 'jean@gmail.com',
             'password' => Hash::make('123456789'),
             'cellphone' => '987654321',
+            'dni'=> '12345678',
             'hiring_date' => now(),
+            'qr_info' => Hash::make('12345678/2/16-11-2024'),
             'state' => 'Activo',
             'rol_id' => 2,
         ]);
@@ -40,7 +44,9 @@ class UserSeeder extends Seeder
             'email' => 'jhosep@gmail.com',
             'password' => Hash::make('123456789'),
             'cellphone' => '987654321',
+            'dni'=> '12345678',
             'hiring_date' => now(),
+            'qr_info' => Hash::make('12345678/3/16-11-2024'),
             'state' => 'Activo',
             'rol_id' => 3,
         ]);

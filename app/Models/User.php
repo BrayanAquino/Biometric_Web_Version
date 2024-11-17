@@ -31,7 +31,9 @@ class User extends Authenticatable
         'email',
         'password',
         'cellphone',
+        'dni',
         'hiring_date',
+        'qr_info',
         'state',
         'rol_id',
     ];

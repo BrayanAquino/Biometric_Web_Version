@@ -76,7 +76,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="mb-4">
- <div>
+                            <div class="mb-4">
                                 <label for="turno_mañana" class="block text-gray-700 dark:text-gray-200">Turno mañana</label>
                                 <input type="checkbox" name="turno_mañana" id="turno_mañana" class="mt-2">
                             </div>

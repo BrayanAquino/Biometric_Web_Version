@@ -7,6 +7,9 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/qrCode.min.js',
+                'resources/js/qrDeteccion.js',
+                'resources/sound/sonido.mp3',
             ],
             refresh: true,
         }),
