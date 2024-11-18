@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\AttendancesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AsistPersController extends Controller
 {
@@ -50,6 +52,12 @@ class AsistPersController extends Controller
         $attendance->save();
 
         return redirect()->route('asistpersonal.index')->with('success', 'Asistencia registrada con éxito.');
+    }
+
+    public function exportDailyAttendances()
+    {
+        $today = Carbon::today();
+        return Excel::download(new AttendancesExport($today), 'asistencias_diarias_' . $today->format('d-m-Y') . '.xlsx');
     }
 
 }

@@ -115,9 +115,9 @@ class User extends Authenticatable
     /**
      * Relación con los horarios (schedule).
      */
-    public function schedule()
+    public function schedules()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class, 'id_user'); // Especificar 'id_user' como clave foránea
     }
 
     /**

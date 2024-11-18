@@ -17,14 +17,14 @@
     <!-- Columna Derecha: Inputs -->
     <div class="bg-gray-600 dark:bg-gray-800 p-6 rounded-lg shadow-md w-1/2 ml-4">
         <h2 class="text-2xl font-semibold text-gray-200 mb-4">Detalles</h2>
-        <form method="POST" action="{{ route('asistencia.store') }}">
+        <form method="POST" action="{{ route('asistencia.update') }}">
             @csrf
             <div class="mb-4">
                 <label for="arrival-date" class="block text-gray-300">Fecha:</label>
                 <input type="date" id="arrival-date" name="fecha" class="mt-1 block w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200" required readonly>
             </div>
             <div class="mb-4">
-                <label for="arrival-time" class="block text-gray-300">Hora de Llegada:</label>
+                <label for="arrival-time" class="block text-gray-300">Hora de Salida:</label>
                 <input type="time" id="arrival-time" name="hora_entrada" class="mt-1 block w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200" required readonly>
             </div>
             <div class="mb-4">

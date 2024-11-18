@@ -13,9 +13,10 @@
                     {{-- <x-a class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700" href="{{ route('asistpersonal.create') }}">
                         Marcar Entrada/Salida
                     </x-a> --}}
-                    <x-a class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700">
+                    <x-a class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700" href="{{ route('asistencias.diarias.export') }}">
                         Generar Reporte
                     </x-a>
+                    
                 </div>
 
                 <!-- Tabla de asistencia -->

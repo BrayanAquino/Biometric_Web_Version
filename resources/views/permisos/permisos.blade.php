@@ -38,7 +38,8 @@
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->status_permission }}</td>
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">
                                         {{-- <x-a href="{{ route('permisos.edit', $permission->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</x-a> --}}
-                                        <x-a href="" class="text-indigo-600 hover:text-indigo-900">Editar</x-a>
+                                        <x-a href="{{ route('permisos.show', $permission->id) }}" class="text-indigo-600 hover:text-indigo-900">Detalles</x-a>
+                                        <x-a href="{{ route('permisos.edit', $permission->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</x-a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'cellphone' => '987654321',
             'dni'=> '12345678',
             'hiring_date' => now(),
-            'qr_info' => Hash::make('12345678/1/16-11-2024'),
+            'qr_info' => '12345678/brayan@gmail.com',
             'state' => 'Activo',
             'rol_id' => 1,
         ]);
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'cellphone' => '987654321',
             'dni'=> '12345678',
             'hiring_date' => now(),
-            'qr_info' => Hash::make('12345678/2/16-11-2024'),
+            'qr_info' => '12345678/jean@gmail.com',
             'state' => 'Activo',
             'rol_id' => 2,
         ]);
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'cellphone' => '987654321',
             'dni'=> '12345678',
             'hiring_date' => now(),
-            'qr_info' => Hash::make('12345678/3/16-11-2024'),
+            'qr_info' => '12345678/jhosep@gmail.com',
             'state' => 'Activo',
             'rol_id' => 3,
         ]);

@@ -11,6 +11,8 @@ use App\Http\Controllers\JustTardController;
 use App\Http\Controllers\AbsencesController;
 use App\Http\Controllers\JustAbsController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ReportController;
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -51,7 +53,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/permisos',[PermissionsController::class, 'index'])->name('permisos.index');
     Route::get('/permisos/crear',[PermissionsController::class,'create'])->name('permisos.create');
     Route::post('/permisos', [PermissionsController::class, 'store'])->name('permisos.store');
-
+    Route::get('/permisos/{id}', [PermissionsController::class, 'show'])->name('permisos.show');
+    Route::get('/evidencias/descargar/{id}', [PermissionsController::class, 'downloadEvidence'])->name('evidencias.descargar');
+    Route::get('/permisos/{id}/editar', [PermissionsController::class, 'edit'])->name('permisos.edit');
+    Route::put('/permisos/{id}', [PermissionsController::class, 'update'])->name('permisos.update');
     //Tardanzas
     Route::get('/tardanzas',[TardinessController::class, 'index'])->name('tardanzas.index');
     Route::get('/tardanzas/justificaciones',[JustTardController::class, 'index'])->name('tardanzas.justificaciones');
@@ -65,3 +70,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     //Marcación de Asistencia
     Route::get('/marcar', [AttendanceController::class,'index'])->name('asistencia.index');
     Route::get('/marcar/qr_scaner', [AttendanceController::class,'create'])->name('asistencia.create');
+    Route::post('/marcar', [AttendanceController::class,'store'])->name('asistencia.store');
+    Route::get('/marcar_salida', [AttendanceController::class,'edit'])->name('asistencia.edit');
+    Route::post('/asistencia/update', [AttendanceController::class, 'update'])->name('asistencia.update');
+
+    //Reportes
+    Route::get('/asistencias-hoy', [ReportController::class, 'today'])->name('reportes.today');
+    Route::get('/asistencias-30-dias', [ReportController::class, 'last30Days'])->name('reportes.last30days');
+    Route::get('/exportar-asistencias', [ReportController::class, 'export'])->name('reportes.export');
+    Route::get('/reporte-asistencia-diaria', [AsistPersController::class, 'exportDailyAttendances'])->name('asistencias.diarias.export');
+
+
+    

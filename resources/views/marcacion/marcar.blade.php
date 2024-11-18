@@ -15,7 +15,7 @@
                 <x-a class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" href="{{ route('asistencia.create') }}">Marcar Entrada</x-a>
             </div>
             <div class="flex-1 flex justify-center">
-                <x-a class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Marcar Salida</x-a>
+                <x-a class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600" href="{{ route('asistencia.edit') }}">Marcar Salida</x-a>
             </div>
         </div>
     </x-authentication-card>

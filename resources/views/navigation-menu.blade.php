@@ -24,10 +24,10 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('reportes.today') }}">
                                 {{ __('Reporte de hoy') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="">
+                            <x-dropdown-link href="{{ route('reportes.last30days') }}">
                                 {{ __('Reporte generales') }}
                             </x-dropdown-link>
                         </x-slot>
@@ -63,18 +63,18 @@
                             <x-dropdown-link href="{{ route('permisos.index') }}">
                                 {{ __('Lista de permisos') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="">
-                                {{ __('Vacaciones') }}
+                            <x-dropdown-link href="{{ route('permisos.create') }}">
+                                {{ __('Crear Permisos') }}
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('calendario.index') }}" :active="request()->routeIs('calendario.index')">
                         {{ __('Calendario') }}
                     </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                </div> --}}
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-dropdown align="bottom" width="48">
                         <x-slot name="trigger" class="pt-5">
                             <x-nav-link href="#" :active="request()->routeIs('dashboard')">
@@ -92,8 +92,8 @@
                         </x-slot>
 
                     </x-dropdown>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                </div> --}}
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-dropdown align="bottom" width="48">
                         <x-slot name="trigger" class="pt-5">
                             <x-nav-link href="#" :active="request()->routeIs('dashboard')">
@@ -110,7 +110,7 @@
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
-                </div>
+                </div> --}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
