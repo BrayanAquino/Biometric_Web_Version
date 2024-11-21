@@ -50,7 +50,7 @@
 
                     <div class="mb-4">
                         <label for="evidence_permission" class="block text-sm font-medium text-gray-700">Evidencia (opcional)</label>
-                        <input type="file" name="evidence_permission" id="evidence_permission" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('evidence_permission') border-red-500 @enderror" accept=".pdf,.jpg,.png">
+                        <input type="file" name="evidence_permission" id="evidence_permission" class="mt-1 block w-full border-red-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('evidence_permission') border-red-500 @enderror" accept=".pdf,.jpg,.png">
                         @error('evidence_permission')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror

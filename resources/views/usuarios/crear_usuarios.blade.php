@@ -133,6 +133,55 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Validar nombre y apellido
+            ['name', 'lastname'].forEach(field => {
+                const input = document.getElementById(field);
+                input.addEventListener('input', function () {
+                    const regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
+                    if (!regex.test(input.value)) {
+                        input.setCustomValidity('Solo se permiten letras y espacios.');
+                    } else {
+                        input.setCustomValidity('');
+                    }
+                });
+            });
+
+            // Validar teléfono
+            const cellphone = document.getElementById('cellphone');
+            cellphone.addEventListener('input', function () {
+                if (cellphone.value.length > 9) {
+                    cellphone.setCustomValidity('El número no debe tener más de 9 cifras.');
+                } else {
+                    cellphone.setCustomValidity('');
+                }
+            });
+
+            // Validar DNI
+            const dni = document.getElementById('dni');
+            dni.addEventListener('input', function () {
+                if (dni.value.length > 8) {
+                    dni.setCustomValidity('El DNI no debe tener más de 8 cifras.');
+                } else {
+                    dni.setCustomValidity('');
+                }
+            });
+
+            // Asociar eventos a los checkboxes
+            ['mañana', 'tarde', 'noche'].forEach(turno => {
+                const checkbox = document.getElementById(`turno_${turno}`);
+                const entrada = document.getElementById(`h_e_${turno}`);
+                const salida = document.getElementById(`h_s_${turno}`);
+
+                checkbox.addEventListener('change', function () {
+                    const isEnabled = checkbox.checked;
+                    entrada.disabled = !isEnabled;
+                    salida.disabled = !isEnabled;
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             // Asociar eventos a los checkboxes
             ['mañana', 'tarde', 'noche'].forEach(turno => {
                 const checkbox = document.getElementById(`turno_${turno}`);
