@@ -24,7 +24,7 @@
                             <input id="lastname" type="text" name="lastname"
                                 class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                         </div>
-                        
+
                         <div class="mb-4">
                             <label for="dni" class="block text-gray-700 dark:text-gray-200">DNI:</label>
                             <input id="dni" type="text" name="dni"
@@ -83,41 +83,38 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="mb-4">
                             <label for="turno_mañana" class="block text-gray-700 dark:text-gray-200">Turno mañana</label>
-                            <input type="checkbox" name="turno_mañana" id="turno_mañana" class="mt-2">
+                            <input type="hidden" name="turno_mañana" value="0"> <!-- Campo oculto para el checkbox -->
+                            <input type="checkbox" name="turno_mañana" id="turno_mañana" class="mt-2" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? 'checked' : '' }}>
 
                             <label for="h_e_mañana" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                            <input type="time" name="h_e_mañana" id="h_e_mañana" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_e_mañana" id="h_e_mañana" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'mañana')->first()->start_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
 
                             <label for="h_s_mañana" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                            <input type="time" name="h_s_mañana" id="h_s_mañana" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_s_mañana" id="h_s_mañana" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'mañana')->first()->end_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                         </div>
 
                         <div class="mb-4">
                             <label for="turno_tarde" class="block text-gray-700 dark:text-gray-200">Turno tarde</label>
-                            <input type="checkbox" name="turno_tarde" id="turno_tarde" class="mt-2">
+                            <input type="hidden" name="turno_tarde" value="0"> <!-- Campo oculto para el checkbox -->
+                            <input type="checkbox" name="turno_tarde" id="turno_tarde" class="mt-2" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? 'checked' : '' }}>
 
                             <label for="h_e_tarde" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                            <input type="time" name="h_e_tarde" id="h_e_tarde" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_e_tarde" id="h_e_tarde" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'tarde')->first()->start_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
 
                             <label for="h_s_tarde" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                            <input type="time" name="h_s_tarde" id="h_s_tarde" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_s_tarde" id="h_s_tarde" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'tarde')->first()->end_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                         </div>
 
                         <div class="mb-4">
                             <label for="turno_noche" class="block text-gray-700 dark:text-gray-200">Turno noche</label>
-                            <input type="checkbox" name="turno_noche" id="turno_noche" class="mt-2">
+                            <input type="hidden" name="turno_noche" value="0"> <!-- Campo oculto para el checkbox -->
+                            <input type="checkbox" name="turno_noche" id=" turno_noche" class="mt-2" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? 'checked' : '' }}>
 
                             <label for="h_e_noche" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                            <input type="time" name="h_e_noche" id="h_e_noche" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_e_noche" id="h_e_noche" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'noche')->first()->start_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
 
                             <label for="h_s_noche" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                            <input type="time" name="h_s_noche" id="h_s_noche" disabled
-                                class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            <input type="time" name="h_s_noche" id="h_s_noche" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'noche')->first()->end_time ?? '' }}" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                         </div>
                     </div>
 

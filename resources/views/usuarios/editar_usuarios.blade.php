@@ -38,7 +38,8 @@
                             </div>
 
                             <div>
-                                <label for="password" class="block font-medium text-sm text-gray-700">Nueva Contraseña</label>
+                                <label for="password" class="block font-medium text-sm text-gray-700">Nueva
+                                    Contraseña</label>
                                 <input id="password" type="password" name="password"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             </div>
@@ -50,8 +51,10 @@
                             </div>
 
                             <div>
-                                <label for="hiring_date" class="block font-medium text-sm text-gray-700">Fecha de contratación</label>
-                                <input id="hiring_date" type="date" name="hiring_date" value="{{ \Carbon\Carbon::parse($user->hiring_date)->format('Y-m-d') }}"
+                                <label for="hiring_date" class="block font-medium text-sm text-gray-700">Fecha de
+                                    contratación</label>
+                                <input id="hiring_date" type="date" name="hiring_date"
+                                    value="{{ \Carbon\Carbon::parse($user->hiring_date)->format('Y-m-d') }}"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             </div>
 
@@ -60,8 +63,10 @@
                                 <select id="state" name="state" required
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="" disabled>Seleccione un estado</option>
-                                    <option value="activo" {{ $user->state == 'activo' ? 'selected' : '' }}>Activo</option>
-                                    <option value="inactivo" {{ $user->state == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                    <option value="activo" {{ $user->state == 'activo' ? 'selected' : '' }}>Activo
+                                    </option>
+                                    <option value="inactivo" {{ $user->state == 'inactivo' ? 'selected' : '' }}>Inactivo
+                                    </option>
                                 </select>
                             </div>
 
@@ -71,7 +76,8 @@
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     <option value="" disabled>Seleccione un rol</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}" {{ $user->rol_id == $role->id ? 'selected' : '' }}>
+                                        <option value="{{ $role->id }}"
+                                            {{ $user->rol_id == $role->id ? 'selected' : '' }}>
                                             {{ $role->name_rol }}
                                         </option>
                                     @endforeach
@@ -85,41 +91,65 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="mb-4">
-                                <label for="turno_mañana" class="block text-gray-700 dark:text-gray-200">Turno mañana</label>
-                                <input type="checkbox" name="turno_mañana" id="turno_mañana" class="mt-2" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? 'checked' : '' }}>
-                        
-                                <label for="h_e_mañana" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                                <input type="time" name="h_e_mañana" id="h_e_mañana" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'mañana')->first()->start_time ?? '' }}"
+                                <label for="turno_mañana" class="block text-gray-700 dark:text-gray-200">Turno
+                                    mañana</label>
+                                <input type="checkbox" name="turno_mañana" id="turno_mañana" class="mt-2"
+                                    {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? 'checked' : '' }}>
+
+                                <label for="h_e_mañana" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Entrada</label>
+                                <input type="time" name="h_e_mañana" id="h_e_mañana"
+                                    {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'mañana')->first()->start_time ?? '' }}"
                                     class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
-                        
-                                <label for="h_s_mañana" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                                <input type="time" name="h_s_mañana" id="h_s_mañana" {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'mañana')->first()->end_time ?? '' }}"
-                                    class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
-                            </div>
-                        
-                            <div class="mb-4">
-                                <label for="turno_tarde" class="block text-gray-700 dark:text-gray-200">Turno tarde</label>
-                                <input type="checkbox" name="turno_tarde" id="turno_tarde" class="mt-2" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? 'checked' : '' }}>
-                        
-                                <label for="h_e_tarde" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                                <input type="time" name="h_e_tarde" id="h_e_tarde" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'tarde')->first()->start_time ?? '' }}"
-                                    class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
-                        
-                                <label for="h_s_tarde" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                                <input type="time" name="h_s_tarde" id="h_s_tarde" {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'tarde')->first()->end_time ?? '' }}"
+
+                                <label for="h_s_mañana" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Salida</label>
+                                <input type="time" name="h_s_mañana" id="h_s_mañana"
+                                    {{ $user->schedules->where('shift', 'mañana')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'mañana')->first()->end_time ?? '' }}"
                                     class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                             </div>
-                        
+
                             <div class="mb-4">
-                                <label for="turno_noche" class="block text-gray-700 dark:text-gray-200">Turno noche</label>
-                                <input type="checkbox" name="turno_noche" id="turno_noche" class="mt-2" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? 'checked' : '' }}>
-                        
-                                <label for="h_e_noche" class="block text-gray-700 dark:text-gray-200">Hora de Entrada</label>
-                                <input type="time" name="h_e_noche" id="h_e_noche" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'noche')->first()->start_time ?? '' }}"
+                                <label for="turno_tarde" class="block text-gray-700 dark:text-gray-200">Turno
+                                    tarde</label>
+                                <input type="checkbox" name="turno_tarde" id="turno_tarde" class="mt-2"
+                                    {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? 'checked' : '' }}>
+
+                                <label for="h_e_tarde" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Entrada</label>
+                                <input type="time" name="h_e_tarde" id="h_e_tarde"
+                                    {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'tarde')->first()->start_time ?? '' }}"
                                     class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
-                        
-                                <label for="h_s_noche" class="block text-gray-700 dark:text-gray-200">Hora de Salida</label>
-                                <input type="time" name="h_s_noche" id="h_s_noche" {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }} value="{{ $user->schedules->where('shift', 'noche')->first()->end_time ?? '' }}"
+
+                                <label for="h_s_tarde" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Salida</label>
+                                <input type="time" name="h_s_tarde" id="h_s_tarde"
+                                    {{ $user->schedules->where('shift', 'tarde')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'tarde')->first()->end_time ?? '' }}"
+                                    class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="turno_noche" class="block text-gray-700 dark:text-gray-200">Turno
+                                    noche</label>
+                                <input type="checkbox" name="turno_noche" id="turno_noche" class="mt-2"
+                                    {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? 'checked' : '' }}>
+
+                                <label for="h_e_noche" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Entrada</label>
+                                <input type="time" name="h_e_noche" id="h_e_noche"
+                                    {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'noche')->first()->start_time ?? '' }}"
+                                    class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+
+                                <label for="h_s_noche" class="block text-gray-700 dark:text-gray-200">Hora de
+                                    Salida</label>
+                                <input type="time" name="h_s_noche" id="h_s_noche"
+                                    {{ $user->schedules->where('shift', 'noche')->isNotEmpty() ? '' : 'disabled' }}
+                                    value="{{ $user->schedules->where('shift', 'noche')->first()->end_time ?? '' }}"
                                     class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
                             </div>
                         </div>
@@ -130,19 +160,28 @@
                             </x-button>
                         </div>
                     </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Asociar eventos a los checkboxes
             ['mañana', 'tarde', 'noche'].forEach(turno => {
                 const checkbox = document.getElementById(`turno_${turno}`);
                 const entrada = document.getElementById(`h_e_${turno}`);
                 const salida = document.getElementById(`h_s_${turno}`);
 
-                checkbox.addEventListener('change', function () {
+                checkbox.addEventListener('change', function() {
                     const isEnabled = checkbox.checked;
                     entrada.disabled = !isEnabled;
                     salida.disabled = !isEnabled;
