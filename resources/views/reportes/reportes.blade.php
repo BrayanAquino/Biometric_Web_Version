@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Asistencia Diaria') }}
+            {{ __('Reportes') }}
         </h2>
     </x-slot>
 
@@ -16,7 +16,7 @@
                     <x-a class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700" href="{{ route('reportes.export') }}">
                         Generar Reporte
                     </x-a>
-                    
+
                 </div>
 
                 <!-- Tabla de asistencia -->
@@ -42,7 +42,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center px-6 py-4 text-gray-800 dark:text-gray-200">No hay registros de asistencia para este mes.</td>
+                                    <td colspan="5" class="text-center px-6 py-4 text-gray-800 dark:text-gray-200">No hay registros de asistencia.</td>
                                 </tr>
                             @endforelse
                         </tbody>

@@ -26,9 +26,9 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="dni" class="block text-gray-700 dark:text-gray-200">DNI:</label>
+                                <label for="dni" class="block font-medium text-sm text-gray-700">DNI:</label>
                                 <input id="dni" type="text" name="dni" value="{{ $user->dni }}"
-                                    class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200">
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                             </div>
 
                             <div>

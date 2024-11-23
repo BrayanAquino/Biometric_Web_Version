@@ -16,7 +16,12 @@ class PermissionsController extends Controller
 
     public function create()
     {
-        return view('permisos.crearpermiso');
+        if (Auth::check()) {
+            $idRol = Auth::user()->rol_id;
+        } else {
+            // Usuario no autenticado
+        }
+        return view('permisos.crearpermiso', compact('idRol'));
     }
 
     public function store(Request $request)

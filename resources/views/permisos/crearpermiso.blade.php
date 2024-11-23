@@ -9,10 +9,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
-                
+
                 <form action="{{ route('permisos.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <!-- Fecha de inicio -->
                     <div class="mb-4">
                         <label for="start_date" class="block text-gray-700 dark:text-gray-200">Fecha de Inicio:</label>
@@ -32,14 +32,16 @@
                     </div>
 
                     <!-- Estado del permiso -->
-                    <div class="mb-4">
-                        <label for="status_permission" class="block text-gray-700 dark:text-gray-200">Estado del Permiso:</label>
-                        <select name="status_permission" id="status_permission" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200" required>
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="Aprobado">Aprobado</option>
-                            <option value="Rechazado">Rechazado</option>
-                        </select>
-                    </div>
+                    @if($idRol == 1)
+                        <div class="mb-4">
+                            <label for="status_permission" class="block text-gray-700 dark:text-gray-200">Estado del Permiso:</label>
+                            <select name="status_permission" id="status_permission" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200" required>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="Aprobado">Aprobado</option>
+                                <option value="Rechazado">Rechazado</option>
+                            </select>
+                        </div>
+                    @endif
 
                     <!-- Evidencia del permiso -->
                     <div class="mb-4">

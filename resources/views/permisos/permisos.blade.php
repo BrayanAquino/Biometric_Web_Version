@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($permissions as $permission)
+                            @forelse ($permissions as $permission)
                                 <tr>
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->user->name }}</td> <!-- Nombre del empleado -->
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->start_date }}</td>
@@ -42,7 +42,11 @@
                                         <x-a href="{{ route('permisos.edit', $permission->id) }}" class="text-indigo-600 hover:text-indigo-900">Editar</x-a>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center px-6 py-4 text-gray-800 dark:text-gray-200">No hay permisos registrados.</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
