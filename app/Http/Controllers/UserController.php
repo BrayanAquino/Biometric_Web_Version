@@ -73,7 +73,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('schedules')->findOrFail($id); // Cargar los horarios
         $roles = Role::all();
         // Formatear la fecha de contratación
         $user->formatted_hiring_date = Carbon::parse($user->hiring_date)->format('d-m-Y');
@@ -85,7 +85,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'lastname' => 'nullable|string|max:255',
-            'dni'=>'nullable|string|max:15',
+            'dni' => 'nullable|string|max:15',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'cellphone' => 'nullable|string|max:15',
             'hiring_date' => 'nullable|date',
@@ -102,20 +102,25 @@ class UserController extends Controller
             'h_s_noche' => 'nullable|date_format:H:i|required_if:turno_noche,true',
         ]);
 
-        $qr_info = $validatedData['dni'] . '/' . $validatedData['email'];
-
         $user = User::findOrFail($id);
-        $user->update([
-            'name' => $validatedData['name'],
-            'lastname' => $validatedData['lastname'],
-            'dni' => $validatedData['dni'],
-            'email' => $validatedData['email'],
-            'cellphone' => $validatedData['cellphone'],
-            'hiring_date' => $validatedData['hiring_date'],
-            'qr_info'=> $qr_info,
-            'state' => $validatedData['state'],
-            'rol_id' => $validatedData['rol_id'],
-        ]);
+        $user->update($validatedData);
+
+        // Actualizar horarios
+        $schedules = [];
+        foreach (['mañana', 'tarde', 'noche'] as $turno) {
+            if ($request->boolean("turno_{$turno}")) {
+                $schedules[] = [
+                    'shift' => $turno,
+                    'start_time' => $request->input("h_e_{$turno}"),
+                    'end_time' => $request->input("h_s_{$turno}"),
+                    'id_user' => $user->id,
+                ];
+            }
+        }
+
+        // Eliminar horarios existentes y crear nuevos
+        $user->schedules()->delete(); // Eliminar horarios existentes
+        $user->schedules()->createMany($schedules); // Crear nuevos horarios
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente.');
     }
