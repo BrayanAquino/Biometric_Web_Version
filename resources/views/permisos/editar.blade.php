@@ -14,7 +14,7 @@
 
                     <div class="mb-4">
                         <label for="start_date" class="block text-sm font-medium text-gray-700">Fecha de Inicio</label>
-                        <input type="date" name="start_date" id="start_date" value="{{ old('start_date', $permission->start_date) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('start_date') border-red-500 @enderror" required>
+                        <input type="date" name="start_date" id="start_date" value="{{ old('start_date', $permission->start_date) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('start_date') border-red-500 @enderror" required readonly>
                         @error('start_date')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
@@ -30,23 +30,25 @@
 
                     <div class="mb-4">
                         <label for="reason_permission" class="block text-sm font-medium text-gray-700">Razón del Permiso</label>
-                        <textarea name="reason_permission" id="reason_permission" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('reason_permission') border-red-500 @enderror" required>{{ old('reason_permission', $permission->reason_permission) }}</textarea>
+                        <textarea name="reason_permission" id="reason_permission" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('reason_permission') border-red-500 @enderror" required readonly>{{ old('reason_permission', $permission->reason_permission) }}</textarea>
                         @error('reason_permission')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label for="status_permission" class="block text-sm font-medium text-gray-700">Estado del Permiso</label>
-                        <select name="status_permission" id="status_permission" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('status_permission') border-red-500 @enderror" required>
-                            <option value="aprobado" {{ old('status_permission', $permission->status_permission) == 'aprobado' ? 'selected' : '' }}>Aprobado</option>
-                            <option value="rechazado" {{ old('status_permission', $permission->status_permission) == 'rechazado' ? 'selected' : '' }}>Rechazado</option>
-                            <option value="pendiente" {{ old('status_permission', $permission->status_permission) == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-                        </select>
-                        @error('status_permission')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    @if($idRol == 1 || $idRol == 2)
+                        <div class="mb-4">
+                            <label for="status_permission" class="block text-sm font-medium text-gray-700">Estado del Permiso</label>
+                            <select name="status_permission" id="status_permission" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50 @error('status_permission') border-red-500 @enderror" required>
+                                <option value="aprobado" {{ old('status_permission', $permission->status_permission) == 'aprobado' ? 'selected' : '' }}>Aprobado</option>
+                                <option value="rechazado" {{ old('status_permission', $permission->status_permission) == 'rechazado' ? 'selected' : '' }}>Rechazado</option>
+                                <option value="pendiente" {{ old('status_permission', $permission->status_permission) == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                            </select>
+                            @error('status_permission')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endif
 
                     <div class="mb-4">
                         <label for="evidence_permission" class="block text-sm font-medium text-gray-700">Evidencia (opcional)</label>

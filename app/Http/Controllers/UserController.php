@@ -43,6 +43,8 @@ class UserController extends Controller
             'rol_id' => 'required|exists:roles,id',
         ]);
 
+        $qr=$validatedData['dni'].'/'.$validatedData['email'];
+
         // Crear el usuario
         $user = User::create([
             'name' => $validatedData['name'],
@@ -52,6 +54,7 @@ class UserController extends Controller
             'password' => Hash::make($validatedData['password']),
             'cellphone' => $validatedData['cellphone'],
             'hiring_date' => $validatedData['hiring_date'],
+            'qr_info'=> $qr,
             'state' => $validatedData['state'],
             'rol_id' => $validatedData['rol_id'],
         ]);
@@ -64,7 +67,7 @@ class UserController extends Controller
                     'shift' => $turno,
                     'start_time' => $request->input("h_e_{$turno}"),
                     'end_time' => $request->input("h_s_{$turno}"),
-                    'id_user' => $user->id, // Asegúrate de incluir el id del usuario
+                    'id_user' => $user->id, 
                 ];
             }
         }
@@ -77,7 +80,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::with('schedules')->findOrFail($id); // Cargar los horarios
+        $user = User::with('schedules')->findOrFail($id);
         $roles = Role::all();
         // Formatear la fecha de contratación
         $user->formatted_hiring_date = Carbon::parse($user->hiring_date)->format('d-m-Y');

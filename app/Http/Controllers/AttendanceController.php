@@ -15,9 +15,6 @@ class AttendanceController extends Controller
     {
         $clientIp = $request->header('X-Forwarded-For') ?? $request->ip();
         
-        if ($clientIp == '127.0.0.1' || $clientIp == '::1') {
-            return view('marcacion.marcar');
-        }
 
         $ipRegistered = IP::where('ip_address', $clientIp)->exists();
 
@@ -29,8 +26,16 @@ class AttendanceController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
+        $clientIp = $request->header('X-Forwarded-For') ?? $request->ip();
+        
+
+        $ipRegistered = IP::where('ip_address', $clientIp)->exists();
+
+        if (!$ipRegistered) {
+            return redirect()->route('dashboard')->with('error', 'Acceso denegado. Su IP no está registrada.');
+        }
         return view('marcacion.marcar_entrada');
     }
 
@@ -51,7 +56,6 @@ class AttendanceController extends Controller
     
         try {
             $schedules = Schedule::where('id_user', $user->id)->first();
-            dd($schedules);
     
             if ($schedules) {
                 // Convertir start_time a formato H:i
@@ -83,7 +87,15 @@ class AttendanceController extends Controller
     }
     
 
-    public function edit(){
+    public function edit(Request $request){
+        $clientIp = $request->header('X-Forwarded-For') ?? $request->ip();
+        
+
+        $ipRegistered = IP::where('ip_address', $clientIp)->exists();
+
+        if (!$ipRegistered) {
+            return redirect()->route('dashboard')->with('error', 'Acceso denegado. Su IP no está registrada.');
+        }
         return view('marcacion.marcar_salida');
     }
 
@@ -95,35 +107,42 @@ class AttendanceController extends Controller
             'dni' => 'required',
             'shift' => 'required',
         ]);
-        // dd($request->all());
-
+    
         $user = User::where('dni', $request->dni)->first();
-
+    
         if (!$user) {
             return back()->with('error', 'Usuario no encontrado.');
         }
-
+    
         try {
-            $attendance = Attendance::where('user_id', $user->id)
+            $attendance = Attendance::where('user_id', $user->id)->where('shift',$request->shift)
                 ->orderBy('id', 'desc')
                 ->first();
+            
             if (!$attendance) {
                 return back()->with('error', 'No se encontró ninguna entrada de asistencia para este usuario.');
             }
+            
+            // dd($attendance);
 
-            // Actualizar la asistencia
-            $attendance->update([
-                'fecha' => $request->fecha,
-                'departure_time' => $request->hora_entrada,
-                'shift' => $request->shift,
-                'attendence_status' => 'Present', 
-            ]);
+            $horaSalida = Carbon::parse($request->hora_entrada);
+            $horaFin = Carbon::parse($attendance->start_time);
+            
 
-            return redirect()->route('asistencia.index')->with('success', 'Asistencia actualizada correctamente.');
+            if ($horaSalida>=$horaFin) {
+                $attendance->update([
+                    'fecha' => $request->fecha,
+                    'departure_time' => $request->hora_entrada,
+                    'shift' => $request->shift,
+                    'attendence_status' => 'A tiempo', 
+                ]);
+            } else {
+                return back()->with('error', 'Aun no es apto para marcar la salida');
+            }
+    
+            // return redirect()->route('asistencia.index')->with('success', 'Asistencia actualizada correctamente.');
         } catch (\Exception $e) {
             return back()->with('error', 'Error al actualizar la asistencia: ' . $e->getMessage());
         }
     }
-
-
 }

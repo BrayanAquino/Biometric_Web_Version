@@ -38,6 +38,10 @@
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Enviar</button>
         </form>
         
+        @if (session('error'))
+            <h1 class="error-message">{{ session('error') }}</h1>
+        @endif
+
     </div>
     <script>
         const setCurrentDateTimeAndShift = () => {

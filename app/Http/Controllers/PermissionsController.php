@@ -107,11 +107,14 @@ class PermissionsController extends Controller
 
     public function edit($id)
     {
+        if (Auth::check()) {
+            $idRol = Auth::user()->rol_id;
+        }
         // Obtener el permiso por ID
         $permission = Permission::with('evidences')->findOrFail($id);
 
         // Retornar la vista de edición con el permiso
-        return view('permisos.editar', compact('permission'));
+        return view('permisos.editar', compact('permission','idRol'));
     }
 
     public function update(Request $request, $id)
