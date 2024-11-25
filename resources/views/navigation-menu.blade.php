@@ -15,42 +15,46 @@
                         {{ __('Asistencia Personal') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-dropdown align="bottom" width="48">
-                        <x-slot name="trigger" class="pt-5">
-                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
-                                {{ __('Reportes') }}
-                            </x-nav-link>
-                        </x-slot>
+                @if (Auth::user()->rol_id === 1 || Auth::user()->rol_id === 2)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-dropdown align="bottom" width="48">
+                            <x-slot name="trigger" class="pt-5">
+                                <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                    {{ __('Reportes') }}
+                                </x-nav-link>
+                            </x-slot>
 
-                        <x-slot name="content">
-                            <x-dropdown-link href="{{ route('reportes.today') }}">
-                                {{ __('Reporte de hoy') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('reportes.last30days') }}">
-                                {{ __('Reporte generales') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
+                            <x-slot name="content">
+                                <x-dropdown-link href="{{ route('reportes.today') }}">
+                                    {{ __('Reporte de hoy') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('reportes.last30days') }}">
+                                    {{ __('Reporte generales') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-dropdown align="bottom" width="48">
-                        <x-slot name="trigger" class="pt-5">
-                            <x-nav-link href="#" :active="request()->routeIs('dashboard')">
-                                {{ __('Usuarios') }}
-                            </x-nav-link>
-                        </x-slot>
+                @endif
+                @if (Auth::user()->rol_id === 1 || Auth::user()->rol_id === 2)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-dropdown align="bottom" width="48">
+                            <x-slot name="trigger" class="pt-5">
+                                <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                    {{ __('Usuarios') }}
+                                </x-nav-link>
+                            </x-slot>
 
-                        <x-slot name="content">
-                            <x-dropdown-link href="{{ route('usuarios.index') }}">
-                                {{ __('Lista de usuarios') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('usuarios.create') }}">
-                                {{ __('Crear usuarios') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
+                            <x-slot name="content">
+                                <x-dropdown-link href="{{ route('usuarios.index') }}">
+                                    {{ __('Lista de usuarios') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('usuarios.create') }}">
+                                    {{ __('Crear usuarios') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-dropdown align="bottom" width="48">
                         <x-slot name="trigger" class="pt-5">
@@ -69,6 +73,26 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @if (Auth::user()->rol_id === 1 || Auth::user()->rol_id === 2)
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-dropdown align="bottom" width="48">
+                            <x-slot name="trigger" class="pt-5">
+                                <x-nav-link href="#" :active="request()->routeIs('dashboard')">
+                                    {{ __('IP Marcacion') }}
+                                </x-nav-link>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-dropdown-link href="{{ route('ip.index') }}">
+                                    {{ __('Lista de IP de Marcacion') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link href="{{ route('ip.create') }}">
+                                    {{ __('Crear IP para marcacion') }}
+                                </x-dropdown-link>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+                @endif
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('calendario.index') }}" :active="request()->routeIs('calendario.index')">
                         {{ __('Calendario') }}

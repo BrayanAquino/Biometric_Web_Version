@@ -31,7 +31,7 @@
                         <tbody>
                             @forelse ($permissions as $permission)
                                 <tr>
-                                    <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->user->name }}</td> <!-- Nombre del empleado -->
+                                    <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->user->name }}</td>
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->start_date }}</td>
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->end_date }}</td>
                                     <td class="px-4 py-2 border-b dark:border-gray-700 text-center text-gray-800 dark:text-gray-200">{{ $permission->reason_permission }}</td>

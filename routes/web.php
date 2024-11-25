@@ -12,6 +12,7 @@ use App\Http\Controllers\AbsencesController;
 use App\Http\Controllers\JustAbsController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\IpController;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 Route::get('/', function () {
@@ -79,6 +80,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/asistencias-30-dias', [ReportController::class, 'last30Days'])->name('reportes.last30days');
     Route::get('/exportar-asistencias', [ReportController::class, 'export'])->name('reportes.export');
     Route::get('/reporte-asistencia-diaria', [AsistPersController::class, 'exportDailyAttendances'])->name('asistencias.diarias.export');
+
+    //IP
+    Route::get('/ip', [IpController::class, 'index'])->name('ip.index');
+    Route::get('/ip/crear', [IpController::class, 'create'])->name('ip.create');
+    Route::post('/ip', [IpController::class, 'store'])->name('ip.store');
+    Route::get('/ip/{id}/editar', [IpController::class, 'edit'])->name('ip.edit');
+    Route::put('/ip/{id}', [IpController::class, 'update'])->name('ip.update');
+    Route::delete('/ip/{id}', [IpController::class, 'destroy'])->name('ip.destroy');
+
+
+
 
 
 

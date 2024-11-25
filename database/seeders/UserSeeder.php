@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'dni'=> '12345678',
             'hiring_date' => now(),
             'qr_info' => '12345678/brayan@gmail.com',
-            'state' => 'Activo',
+            'state' => 'activo',
             'rol_id' => 1,
         ]);
         User::create([
@@ -32,10 +32,10 @@ class UserSeeder extends Seeder
             'email' => 'jean@gmail.com',
             'password' => Hash::make('123456789'),
             'cellphone' => '987654321',
-            'dni'=> '12345678',
+            'dni'=> '12345679',
             'hiring_date' => now(),
-            'qr_info' => '12345678/jean@gmail.com',
-            'state' => 'Activo',
+            'qr_info' => '12345679/jean@gmail.com',
+            'state' => 'activo',
             'rol_id' => 2,
         ]);
         User::create([
@@ -44,10 +44,10 @@ class UserSeeder extends Seeder
             'email' => 'jhosep@gmail.com',
             'password' => Hash::make('123456789'),
             'cellphone' => '987654321',
-            'dni'=> '12345678',
+            'dni'=> '12345677',
             'hiring_date' => now(),
-            'qr_info' => '12345678/jhosep@gmail.com',
-            'state' => 'Activo',
+            'qr_info' => '12345677/jhosep@gmail.com',
+            'state' => 'activo',
             'rol_id' => 3,
         ]);
     }

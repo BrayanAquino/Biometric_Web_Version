@@ -25,6 +25,8 @@
                         <thead>
                             <tr class="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">
                                 <th class="px-6 py-3 text-center w-1/5">Fecha</th>
+                                <th class="px-6 py-3 text-center w-1/5">Nombre</th>
+                                <th class="px-6 py-3 text-center w-1/5">Apellidos</th>
                                 <th class="px-6 py-3 text-center w-1/5">Hora Entrada</th>
                                 <th class="px-6 py-3 text-center w-1/5">Hora Salida</th>
                                 <th class="px-6 py-3 text-center w-1/5">Turno</th>
@@ -35,6 +37,8 @@
                             @forelse ($attendances as $attendance)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ \Carbon\Carbon::parse($attendance->fecha)->format('d-m-Y') }}</td>
+                                    <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->user->name }}</td>
+                                    <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->user->lastname }}</td>
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->hora_entrada ? \Carbon\Carbon::parse($attendance->hora_entrada)->format('H:i') : 'No registrado' }}</td>
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->departure_time ? \Carbon\Carbon::parse($attendance->departure_time)->format('H:i') : 'No registrado' }}</td>
                                     <td class="px-6 py-4 text-center text-gray-800 dark:text-gray-200">{{ $attendance->shift }}</td>

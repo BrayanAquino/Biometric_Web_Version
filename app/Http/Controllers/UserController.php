@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -23,54 +25,55 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('usuarios.crear_usuarios', compact('roles'));
+        $user = Auth::user();
+        return view('usuarios.crear_usuarios', compact('roles','user'));
     }
 
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'lastname' => 'nullable|string|max:255',
-        'dni' => 'nullable|string|max:15',
-        'email' => 'required|string|email|max:255|unique:users,email',
-        'password' => 'required|string|min:8',
-        'cellphone' => 'nullable|string|max:15',
-        'hiring_date' => 'nullable|date',
-        'state' => 'nullable|string|max:255',
-        'rol_id' => 'required|exists:roles,id',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'nullable|string|max:255',
+            'dni' => 'nullable|string|max:15',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8',
+            'cellphone' => 'nullable|string|max:15',
+            'hiring_date' => 'nullable|date',
+            'state' => 'nullable|string|max:255',
+            'rol_id' => 'required|exists:roles,id',
+        ]);
 
-    // Crear el usuario
-    $user = User::create([
-        'name' => $validatedData['name'],
-        'lastname' => $validatedData['lastname'],
-        'dni' => $validatedData['dni'],
-        'email' => $validatedData['email'],
-        'password' => Hash::make($validatedData['password']),
-        'cellphone' => $validatedData['cellphone'],
-        'hiring_date' => $validatedData['hiring_date'],
-        'state' => $validatedData['state'],
-        'rol_id' => $validatedData['rol_id'],
-    ]);
+        // Crear el usuario
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'lastname' => $validatedData['lastname'],
+            'dni' => $validatedData['dni'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'cellphone' => $validatedData['cellphone'],
+            'hiring_date' => $validatedData['hiring_date'],
+            'state' => $validatedData['state'],
+            'rol_id' => $validatedData['rol_id'],
+        ]);
 
-    // Guardar los horarios
-    $schedules = [];
-    foreach (['mañana', 'tarde', 'noche'] as $turno) {
-        if ($request->boolean("turno_{$turno}")) {
-            $schedules[] = [
-                'shift' => $turno,
-                'start_time' => $request->input("h_e_{$turno}"),
-                'end_time' => $request->input("h_s_{$turno}"),
-                'id_user' => $user->id, // Asegúrate de incluir el id del usuario
-            ];
+        // Guardar los horarios
+        $schedules = [];
+        foreach (['mañana', 'tarde', 'noche'] as $turno) {
+            if ($request->boolean("turno_{$turno}")) {
+                $schedules[] = [
+                    'shift' => $turno,
+                    'start_time' => $request->input("h_e_{$turno}"),
+                    'end_time' => $request->input("h_s_{$turno}"),
+                    'id_user' => $user->id, // Asegúrate de incluir el id del usuario
+                ];
+            }
         }
+
+        // Guardar los horarios en la base de datos
+        $user->schedules()->createMany($schedules);
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
-
-    // Guardar los horarios en la base de datos
-    $user->schedules()->createMany($schedules);
-
-    return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
-}
 
     public function edit($id)
     {
@@ -120,9 +123,9 @@ class UserController extends Controller
         $user = User::with('schedules')->findOrFail($id);
         $user->update($validatedData);
 
-        $scheduleM = Schedule::where('id_user', 1)->where('shift','mañana')->get();
-        $scheduleT = Schedule::where('id_user', 1)->where('shift','tarde')->get();
-        $scheduleN = Schedule::where('id_user', 1)->where('shift','noche')->get();
+        $scheduleM = Schedule::where('id_user', $id)->where('shift','mañana')->get();
+        $scheduleT = Schedule::where('id_user', $id)->where('shift','tarde')->get();
+        $scheduleN = Schedule::where('id_user', $id)->where('shift','noche')->get();
 
         if ($scheduleM->isNotEmpty()) {
             if ($validatedData['turno_mañana'] == true) {

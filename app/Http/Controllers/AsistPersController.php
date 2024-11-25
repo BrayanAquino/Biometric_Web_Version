@@ -12,19 +12,19 @@ class AsistPersController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();  
+        $user = Auth::user(); 
+        $qrInfo = $user->qr_info; 
         
-        $currentMonth = Carbon::now()->month; 
-        $currentYear = Carbon::now()->year;  
+        $currentMonth = Carbon::now()->month;
+        $currentYear = Carbon::now()->year;
         
-        $attendances = Attendance::where('user_id', $userId)
-            ->whereMonth('fecha', $currentMonth) 
-            ->whereYear('fecha', $currentYear)  
+        $attendances = Attendance::with('user')->where('user_id', $user->id)
+            ->whereMonth('fecha', $currentMonth)
+            ->whereYear('fecha', $currentYear)
             ->get();
         
-        return view('asist_pers.asist_pers', compact('attendances'));
+        return view('asist_pers.asist_pers', compact('attendances', 'qrInfo'));
     }
-
     public function create()
     {
         return view('asist_pers.marcar');

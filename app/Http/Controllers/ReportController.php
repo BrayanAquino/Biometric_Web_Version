@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\AttendancesExport;
@@ -15,9 +16,8 @@ class ReportController extends Controller
         // Obtiene la fecha actual
         $today = Carbon::today();
 
-        // Recupera las asistencias del día actual
-        $attendances = Attendance::whereDate('fecha', $today)->get();
-
+        $attendances = Attendance::with('user')->whereDate('fecha', $today)->get();
+        // dd($attendances);
         // Pasa los datos a la vista
         return view('reportes.reportes', compact('attendances'));
     }

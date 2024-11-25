@@ -10,16 +10,26 @@ class PermissionsController extends Controller
 {
     public function index()
     {
-        $permissions = Permission::with('evidences')->where('user_id', Auth::id())->get();
+        if (Auth::check()) {
+            $idRol = Auth::user()->rol_id;
+        }
+
+        if ($idRol == 1 || $idRol == 2) {
+            // Si el rol es 1 o 2, obtener todos los permisos
+            $permissions = Permission::with('evidences')->get();
+        } else {
+            // Si el rol no es 1 o 2, obtener solo los permisos del usuario autenticado
+            $permissions = Permission::with('evidences')->where('user_id', Auth::id())->get();
+        }
+
         return view('permisos.permisos', compact('permissions'));
     }
+
 
     public function create()
     {
         if (Auth::check()) {
             $idRol = Auth::user()->rol_id;
-        } else {
-            // Usuario no autenticado
         }
         return view('permisos.crearpermiso', compact('idRol'));
     }

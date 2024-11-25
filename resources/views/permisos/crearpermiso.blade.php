@@ -31,8 +31,7 @@
                         <textarea name="reason_permission" id="reason_permission" rows="4" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200" required></textarea>
                     </div>
 
-                    <!-- Estado del permiso -->
-                    @if($idRol == 1)
+                    @if($idRol == 1 || $idRol == 2)
                         <div class="mb-4">
                             <label for="status_permission" class="block text-gray-700 dark:text-gray-200">Estado del Permiso:</label>
                             <select name="status_permission" id="status_permission" class="w-full mt-2 p-2 border rounded-md dark:bg-gray-700 dark:text-gray-200" required>
@@ -41,7 +40,12 @@
                                 <option value="Rechazado">Rechazado</option>
                             </select>
                         </div>
+                    @else
+                        <input type="hidden" name="status_permission" id="status_permission" value="Pendiente">
                     @endif
+                
+
+
 
                     <!-- Evidencia del permiso -->
                     <div class="mb-4">
