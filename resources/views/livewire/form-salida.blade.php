@@ -37,12 +37,41 @@
             </div>
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Enviar</button>
         </form>
-        
-        @if (session('error'))
-            <h1 class="error-message">{{ session('error') }}</h1>
-        @endif
-
     </div>
+
+    <div id="error-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white dark:bg-gray-900 p-6 rounded-lg w-1/3 text-center">
+            <button id="close-modal" class="absolute top-2 right-2 text-gray-500 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-300">&times;</button>
+            <h2 class="text-xl font-semibold text-red-500">¡Ocurrió un error!</h2>
+            <p class="text-gray-600 dark:text-gray-300">Usted no es apto para marcar la salida aún.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal con el mensaje de error
+        const showModal = (message) => {
+            const modal = document.getElementById('error-modal');
+            const errorMessage = modal.querySelector('p');
+            errorMessage.textContent = message;
+            modal.classList.remove('hidden');
+        };
+
+        // Cerrar el modal
+        const closeModal = () => {
+            const modal = document.getElementById('error-modal');
+            modal.classList.add('hidden');
+        };
+
+        // Botón para cerrar el modal
+        const closeModalButton = document.getElementById('close-modal');
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Mostrar el modal si hay un error
+        @if (session('error'))
+            showModal("{{ session('error') }}");
+        @endif
+    </script>
+
     <script>
         const setCurrentDateTimeAndShift = () => {
             const now = new Date();
